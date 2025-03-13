@@ -1,7 +1,7 @@
-package topic_1;
+package topic_3;
 
-public interface LinkedList {
-    public boolean addList(Node node);
+public interface LinkedList<T> {
+    public boolean addList(Node<T> node);
     public void removeList0();
     public void removeListByValue(int value);
     public int find(int value);

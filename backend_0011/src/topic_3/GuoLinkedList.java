@@ -1,10 +1,10 @@
-package topic_1;
+package topic_3;
 
-public class GuoLinkedList implements LinkedList {
+public class GuoLinkedList<T> implements LinkedList<T> {
 
     @Override
     // Add a node to the last.
-    public boolean addList(Node node) {
+    public boolean addList(Node<T> node) {
         node.prev = tail_sentinel.prev;
         node.next = tail_sentinel;
         tail_sentinel.prev.next = node;
@@ -14,7 +14,7 @@ public class GuoLinkedList implements LinkedList {
     }
 
     // Help method of the two remove methods, remove a specified node.
-    private void removeNode(Node dist) {
+    private void removeNode(Node<T> dist) {
         dist.prev.next = dist.next;
         dist.next.prev = dist.prev;
         size--;
@@ -32,23 +32,26 @@ public class GuoLinkedList implements LinkedList {
     @Override
     // Remove the node which has a special value.
     public void removeListByValue(int value) {
-        for (Node ptr = head_sentinel.next; ptr != tail_sentinel; ptr = ptr.next) {
-            if (ptr.item == value) {
+        for (Node<T> ptr = head_sentinel.next; ptr != tail_sentinel; ptr = ptr.next) {
+            if (ptr.item.equals(value)) {
                 removeNode(ptr);
+                return;
             }
         }
     }
 
     @Override
-    // Find the first node which has a special value, return it's index.
+    // Find the first node which has a special value, return its index.
+    // If not found, return -1.
     public int find(int value) {
         int count = 0;
-        for (Node ptr = head_sentinel.next; ptr.item != value; ptr = ptr.next, count++) {
+        for (Node<T> ptr = head_sentinel.next; ; ptr = ptr.next, count++) {
             if (ptr == tail_sentinel) {
                 return -1;
+            } else if (ptr.item.equals(value)) {
+                return count;
             }
         }
-        return count;
     }
 
     @Override
@@ -59,12 +62,12 @@ public class GuoLinkedList implements LinkedList {
 
     // Constructor.
     public GuoLinkedList() {
-        head_sentinel = new Node(-1, null, null);
-        tail_sentinel = new Node(-1, head_sentinel, null);
+        head_sentinel = new Node<>(null, null, null);
+        tail_sentinel = new Node<>(null, head_sentinel, null);
         head_sentinel.next = tail_sentinel;
     }
 
-    private Node head_sentinel;
-    private Node tail_sentinel;
+    private Node<T> head_sentinel;
+    private Node<T> tail_sentinel;
     private int size;
 }
