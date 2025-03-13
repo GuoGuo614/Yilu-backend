@@ -5,14 +5,14 @@ public class Circle implements Perarea {
         radius = 5;
     }
 
-    // Get the area of the circle.
     @Override
+    // Get the area of the circle.
     public double get_area() {
         return radius * radius * Math.PI;
     }
 
-    // Get the perimeter of the circle.
     @Override
+    // Get the perimeter of the circle.
     public double get_perimeter() {
         return 2 * radius * Math.PI;
     }

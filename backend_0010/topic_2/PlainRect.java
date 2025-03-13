@@ -10,10 +10,9 @@ public class PlainRect extends Rect {
 
     // Constructor, initialize the position and size.
     public PlainRect(double x, double y, double aWidth, double aHeight) {
+        super(x, y);
         startX = x;
         startY = y;
-        width = aWidth;
-        height = aHeight;
     }
 
     // Check point (x, y) is inside the rectangle or not.
