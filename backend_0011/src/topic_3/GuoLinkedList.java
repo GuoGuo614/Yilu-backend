@@ -5,10 +5,10 @@ public class GuoLinkedList<T> implements LinkedList<T> {
     @Override
     // Add a node to the last.
     public boolean addList(Node<T> node) {
-        node.prev = tail_sentinel.prev;
-        node.next = tail_sentinel;
-        tail_sentinel.prev.next = node;
-        tail_sentinel.prev = node;
+        node.prev = tailSentinel.prev;
+        node.next = tailSentinel;
+        tailSentinel.prev.next = node;
+        tailSentinel.prev = node;
         size++;
         return true;
     }
@@ -26,13 +26,13 @@ public class GuoLinkedList<T> implements LinkedList<T> {
         if (size == 0) {
             return;
         }
-        removeNode(tail_sentinel.prev);
+        removeNode(tailSentinel.prev);
     }
 
     @Override
     // Remove the node which has a special value.
     public void removeListByValue(int value) {
-        for (Node<T> ptr = head_sentinel.next; ptr != tail_sentinel; ptr = ptr.next) {
+        for (Node<T> ptr = headSentinel.next; ptr != tailSentinel; ptr = ptr.next) {
             if (ptr.item.equals(value)) {
                 removeNode(ptr);
                 return;
@@ -45,8 +45,8 @@ public class GuoLinkedList<T> implements LinkedList<T> {
     // If not found, return -1.
     public int find(int value) {
         int count = 0;
-        for (Node<T> ptr = head_sentinel.next; ; ptr = ptr.next, count++) {
-            if (ptr == tail_sentinel) {
+        for (Node<T> ptr = headSentinel.next; ; ptr = ptr.next, count++) {
+            if (ptr == tailSentinel) {
                 return -1;
             } else if (ptr.item.equals(value)) {
                 return count;
@@ -62,12 +62,12 @@ public class GuoLinkedList<T> implements LinkedList<T> {
 
     // Constructor.
     public GuoLinkedList() {
-        head_sentinel = new Node<>(null, null, null);
-        tail_sentinel = new Node<>(null, head_sentinel, null);
-        head_sentinel.next = tail_sentinel;
+        headSentinel = new Node<>(null, null, null);
+        tailSentinel = new Node<>(null, headSentinel, null);
+        headSentinel.next = tailSentinel;
     }
 
-    private Node<T> head_sentinel;
-    private Node<T> tail_sentinel;
+    private Node<T> headSentinel;
+    private Node<T> tailSentinel;
     private int size;
 }
