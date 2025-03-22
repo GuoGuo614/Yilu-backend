@@ -1,7 +1,7 @@
 package topic_2;
 
 // 攻击者苦力怕类
-public class Creeper {
+public class CreeperBlock {
 
     public void attack(Player p) {
         // 获取玩家对象的对象锁，进行攻击.

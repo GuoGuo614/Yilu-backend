@@ -44,12 +44,12 @@ public class GuoLinkedList<T> implements LinkedList<T> {
     // Find the first node which has a special value, return its index.
     // If not found, return -1.
     public int find(int value) {
-        int count = 0;
-        for (Node<T> ptr = headSentinel.next; ; ptr = ptr.next, count++) {
+        int index = 0;
+        for (Node<T> ptr = headSentinel.next; ; ptr = ptr.next, index++) {
             if (ptr == tailSentinel) {
                 return -1;
             } else if (ptr.item.equals(value)) {
-                return count;
+                return index;
             }
         }
     }

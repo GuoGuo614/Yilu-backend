@@ -12,14 +12,14 @@ public class Producer implements DataProcessor {
             while (zone.deque.size() == zone.capacity) {
                 try {
                     // zone已满，无法生产，线程等待
-                    System.out.println("The zone is full, producer is waiting...");
+                    System.out.println("The zone is full, " + Thread.currentThread().getName() + " is waiting...");
                     zone.wait();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
             Production reuslt = zone.produce(value);
-            System.out.println("producer successfully add a production, id: " + reuslt.getId());
+            System.out.println(Thread.currentThread().getName() + " successfully add a production, id: " + reuslt.getId());
             // 唤醒其它线程
             zone.notifyAll();
         }

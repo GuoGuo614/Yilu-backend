@@ -4,8 +4,8 @@ package topic_2;
 public class AttackBlock {
     public static void main(String[] args) {
         Player p = new Player();
-        Creeper A = new Creeper();
-        Creeper B = new Creeper();
+        CreeperBlock A = new CreeperBlock();
+        CreeperBlock B = new CreeperBlock();
 
         Runnable creeperA = () -> {
             for (int i = 0; i < 3; i++) {
